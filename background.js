@@ -11,6 +11,7 @@ var controller = function() {
 				saveLink();
 			} else if (command == "random") {
 				createTab(Math.floor(Math.random() * links.length));
+				switchToNewTab();
 			}
 		});
 
@@ -28,22 +29,21 @@ var controller = function() {
 				}
 			} else if (message.method == 'openLink') {
 				var id = message.num;
+				var index;
 				for (var i = 0; i < links.length; i++) {
 					if (links[i].num == id) {
 						createTab(i);
-						break;
 					}
 				}
 				sendResponse();
 			} else if (message.method == 'saveLink') {
 				saveLink();
-				sendResponse();
 			} else if (message.method == 'clearLinks') {
 				links = [];
 				updateBadge();
 			} else if (message.method == 'randomLink') {
 				if (links.length == 0) return;
-				createTab(Math.floor(Math.random() * links.length))
+				createTab(Math.floor(Math.random() * links.length));
 				sendResponse();
 			}
 		});
@@ -68,15 +68,19 @@ var controller = function() {
 		} else {
 			chrome.browserAction.setBadgeText({text: ""});
 		}
-		
 	}
 	var createTab = function(index) {
-		chrome.tabs.create({url: links[index].url, active: true}, function(tab) {
+		chrome.tabs.create({url: links[index].url, active: false}, function(tab) {
 			links.splice(index, 1);
 			updateBadge();
 		});
 	}
 	init();
+	var switchToNewTab = function() {
+		chrome.tabs.query({currentWindow: true}, function (tabs) {
+			chrome.tabs.update(tabs[tabs.length - 1].id, {active: true});
+		})
+	} 
 }
 
 document.addEventListener('DOMContentLoaded', function () {

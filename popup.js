@@ -36,10 +36,8 @@ function processLinks(items) {
 	table.find('tr').click(function() {
 		var tr = $(this);
 		tr.fadeOut(200, function() {
-			chrome.runtime.sendMessage({method: 'openLink', num: tr.data('id')}, function() {
-				window.close();
-			});
-		})
+			chrome.runtime.sendMessage({method: 'openLink', num: tr.data('id')}, switchToNewTab);
+		});
 	});
 }
 function initButtonEvents() {
@@ -48,13 +46,15 @@ function initButtonEvents() {
 		chrome.runtime.sendMessage({method: 'clearLinks'});
 	});
 	$('#random').click(function() {
-		chrome.runtime.sendMessage({method: 'randomLink'}, function() {
-			window.close();
-		});
+		chrome.runtime.sendMessage({method: 'randomLink'}, switchToNewTab);
 	});
 	$('#add').click(function() {
-		chrome.runtime.sendMessage({method: 'saveLink'}, function() {
-			window.close();
-		})
+		chrome.runtime.sendMessage({method: 'saveLink'});
+		window.close();
 	})
 }
+function switchToNewTab() {
+	chrome.tabs.query({currentWindow: true}, function (tabs) {
+		chrome.tabs.update(tabs[tabs.length - 1].id, {active: true});
+	})
+} 

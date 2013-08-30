@@ -86,6 +86,14 @@
 				background-image: none;
 				background-color: #006dcc
 			}
+			a {
+				color: black;
+				text-decoration: none;
+				font-weight: bold;
+			}
+			a:focus {
+				outline: none;
+			}
 
 		</style>
 	</head>
@@ -95,7 +103,7 @@
 		<div style='margin-top: 5px'>
 			<button class='opts' id='clear'>Clear</button>
 			<button class='opts' id='random'>Random</button>
-			<button class='opts' id='add'> Add </button>
+			<button class='opts' id='add' autofocus> Add </button>
 		</div>
 		<script src='jquery-2.0.3.min.js'></script>
 		<script src="popup.js"></script>
