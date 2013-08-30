@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang='en'>
+	<head>
+		<title>
+		</title>
+		<style>
+			html {
+				width: 400px;
+				overflow-x: hidden;
+				font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+				font-size: 14px;
+			}
+			tr {
+				height: 50px;
+			}
+			table {
+				border-collapse: collapse;
+			}
+			table td {
+				border-top: 1px rgba(0, 0, 0, .4) solid;
+				border-bottom: 1px rgba(0, 0, 0, .4) solid;
+			}
+			td.lnk {
+				text-align: center;
+				width: 300px;
+				max-width: 300px;
+				text-overflow: ellipsis;
+				overflow-x: hidden;
+			}
+			tbody {
+				display: block;
+				max-height: 400px;
+				overflow: scroll;
+			}
+			button.cls {
+				background: transparent;
+				border: none;
+				color: rgba(0, 0, 0, .2);
+				font-weight: bold;
+				font-size: 18px;
+				cursor: pointer;
+			}
+			button.cls:hover {
+				text-shadow: 0px 0px 4px rgba(0, 0, 0, .4);
+			}
+			tr:hover {
+				background: rgba(0, 0, 200, .05);
+				cursor: pointer;
+			}
+			button.opts {
+				cursor: pointer;
+				padding: 4px 12px;
+				border-image: none;
+				color: white;
+				font-size: 14px;
+				line-height: 20px;
+				border: none;
+				text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+				box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+				border-radius: 4px;
+				outline: 0 none;
+			}
+			#clear {
+				float: left;
+				background-image: linear-gradient(to bottom, #fbb450, #f89406);
+			}
+			#clear:hover {
+				background-image: none;
+				background-color: #f89406;
+			}
+			#random {
+				float: right;
+				background-image: linear-gradient(to bottom, #62c462, #51a351)
+			}
+			#random:hover {
+				background-image: none;
+				background-color: #5bb75b;
+			}
+			#add {
+				float:right;
+				margin-right: 85px;
+				margin-left: 85px;
+				background-image: linear-gradient(to bottom, #0088cc, #0044cc);
+			}
+			#add:hover {
+				background-image: none;
+				background-color: #006dcc
+			}
+
+		</style>
+	</head>
+	<body>
+		<h3> Stashed: </h3>
+		<table id='links'></table>
+		<div style='margin-top: 5px'>
+			<button class='opts' id='clear'>Clear</button>
+			<button class='opts' id='random'>Random</button>
+			<button class='opts' id='add'> Add </button>
+		</div>
+		<script src='jquery-2.0.3.min.js'></script>
+		<script src="popup.js"></script>
+	</body>
+</html>
